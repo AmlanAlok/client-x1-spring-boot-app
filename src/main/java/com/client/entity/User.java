@@ -1,6 +1,7 @@
 package com.client.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -25,8 +26,7 @@ public class User {
     private String password;
 
     @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Timestamp created_at;
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
@@ -69,5 +69,13 @@ public class User {
 
     public Date getUpdated_at() {
         return updated_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
     }
 }
