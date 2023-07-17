@@ -26,21 +26,39 @@ public class User {
     private String password;
 
     @Column
-    private Timestamp created_at;
+    private Timestamp createdAt;
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updatedAt;
+
+    @Column
+    private Boolean isEnabled;
+
+    @Column
+    private int rolesId;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String email, String password) {
+//    public User(Long id, String firstName, String lastName, String email, String password) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.password = password;
+//    }
+
+    public User(Long id, String firstName, String lastName, String email, String password, Timestamp createdAt, Date updatedAt, Boolean isEnabled, int rolesId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.isEnabled = isEnabled;
+        this.rolesId = rolesId;
     }
 
     public Long getId() {
@@ -63,19 +81,42 @@ public class User {
         return password;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public Boolean getIsEnabled() {
+        return isEnabled;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public int getRolesId() {
+        return rolesId;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", isEnabled=" + isEnabled +
+                ", rolesId=" + rolesId +
+                '}';
     }
 }

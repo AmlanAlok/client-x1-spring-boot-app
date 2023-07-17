@@ -14,7 +14,10 @@ public class UserService {
     public UserRepository userRepository;
 
     public User saveUser(User user){
-        user.setCreated_at(new Timestamp(System.currentTimeMillis()));
-        return userRepository.save(user);
+        user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        System.out.println(user);
+//        return userRepository.save(user);
+        return user;
+
     }
 }
