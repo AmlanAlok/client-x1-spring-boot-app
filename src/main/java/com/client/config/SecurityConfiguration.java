@@ -1,5 +1,6 @@
 package com.client.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,17 +9,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    /**
+     * If the H@ in built database is active, spring is smart to use that as the datasource
+     * without being explicitly mentioned
+     * */
+    @Autowired
+    DataSource dataSource;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("blah").password("blah").roles("USER")
-                .and().withUser("polo").password("polo").roles("USER")
-                .and().withUser("foo").password("foo").roles("ADMIN");
+        auth.jdbcAuthentication();  // tells spring security to look for credentials in DB
     }
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//
+//        auth.inMemoryAuthentication()
+//                .withUser("blah").password("blah").roles("USER")
+//                .and().withUser("polo").password("polo").roles("USER")
+//                .and().withUser("foo").password("foo").roles("ADMIN");
+//     }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() { return NoOpPasswordEncoder.getInstance();}
