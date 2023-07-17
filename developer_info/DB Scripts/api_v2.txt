@@ -1,0 +1,18 @@
+{
+  "firstName": "Naruto",
+  "lastName": "Uzumaki",
+  "email": "nu0@x.com",
+  "password": "polo",
+  "isEnabled": true,
+  "rolesId": 1
+}
+
+{
+    "firstName": "Kakashi",
+    "lastName": "Hatake",
+    "email": "kh0@x.com",
+    "password": "konoha",
+    "isEnabled": true,
+    "rolesId": 2
+}
+

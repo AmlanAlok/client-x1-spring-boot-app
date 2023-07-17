@@ -1,0 +1,1 @@
+insert into client_x1.roles (`name`) values ("User"), ("Admin");
