@@ -1,16 +1,23 @@
 package com.client.modal;
 
+import com.client.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 
 public class MyUserDetails implements UserDetails {
 
     private String userName;
+    private String password;
+    private boolean isEnabled;
+    private List<GrantedAuthority> authorities = new ArrayList<>();
+
 
     public MyUserDetails(String userName) {
         this.userName = userName;
@@ -19,14 +26,22 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails() {
     }
 
+    public MyUserDetails(User user, String roleName) {
+        this.userName = user.getEmail();
+        this.password = user.getPassword();
+        this.isEnabled = user.getIsEnabled();
+        this.authorities.add(new SimpleGrantedAuthority(roleName));
+
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));  // ROLE_USER is a keyword, DO NOT change it. I got error.
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return "pass";
+        return password;
     }
 
     @Override
@@ -51,6 +66,6 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }
