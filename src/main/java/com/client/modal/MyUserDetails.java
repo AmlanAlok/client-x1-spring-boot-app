@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -31,7 +30,6 @@ public class MyUserDetails implements UserDetails {
         this.password = user.getPassword();
         this.isEnabled = user.getIsEnabled();
         this.authorities.add(new SimpleGrantedAuthority(roleName));
-
     }
 
     @Override
